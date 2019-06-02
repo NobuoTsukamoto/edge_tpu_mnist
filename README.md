@@ -108,5 +108,5 @@ If you want to use the TF-Lite API, take a look at the notebook sample.
 Classify MNIST using TF-Lite Model.
 
 
-For more information, please refer [my blogs](https://nextremer-nbo.blogspot.com/).<br>
+For more information, please refer [my blogs](https://nextremer-nbo.blogspot.com/2019/06/edge-tpu.html).<br>
 (comming soon. but sorry japanese only.)
