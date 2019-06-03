@@ -28,13 +28,13 @@ When learning is complete, a model is generated in the following directory:
     + model.ckpt-xxxx.data-00000-of-00001
     + model.ckpt-xxxx.index
     + model.ckpt-xxxx.meta 
-    + minist_fully_connected_feed_graph.pb
+    + mnist_fully_connected_feed_graph.pb
 ```
 
 model.ckpt is a ckecpoint file.<br>
 The number of learning steps is recorded in "xxxx".<br>
 The default is 4999 maximum.
-minist_fully_connected_feed_graph.pb is a GrarhDef file.
+mnist_fully_connected_feed_graph.pb is a GrarhDef file.
 
 The GraphDef directory contains the structure of the model.<br>
 You can check with tensorboard.<br>
@@ -46,13 +46,13 @@ See [Quantization-aware training](https://github.com/tensorflow/tensorflow/tree/
 ### 2.Freeze Graph
 Converts checkpoint variables into Const ops in a standalone GraphDef file.<br>
 Use the freeze_graph command.<br>
-The freeze_minist_fully_connected_feed_graph.pb file is generated in the logs directory.<br>
+The freeze_mnist_fully_connected_feed_graph.pb file is generated in the logs directory.<br>
 ```
 $ freeze_graph \
-  --input_graph=./logs/minist_fully_connected_feed_graph.pb \
+  --input_graph=./logs/mnist_fully_connected_feed_graph.pb \
   --input_checkpoint=./logs/model.ckpt-4999 \
   --input_binary=true \
-  --output_graph=./logs/freeze_minist_fully_connected_feed_graph.pb \
+  --output_graph=./logs/freeze_mnist_fully_connected_feed_graph.pb \
   --output_node_names=softmax_tensor
 ```
   
@@ -62,7 +62,7 @@ The output_tflite_graph.tflite file is generated in the logs directory.<br>
 ```
 $ tflite_convert \
   --output_file=./logs/output_tflite_graph.tflite \
-  --graph_def_file=./logs/freeze_minist_fully_connected_feed_graph.pb \
+  --graph_def_file=./logs/freeze_mnist_fully_connected_feed_graph.pb \
   --inference_type=QUANTIZED_UINT8 \
   --input_arrays=input_tensor \
   --output_arrays=softmax_tensor \
